@@ -1,4 +1,4 @@
-import { FoodGroup } from 'src/types/food-category.type';
+import { FoodGroup } from 'src/enums/food-category.enum';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Recipe } from './recipe.entity';
 

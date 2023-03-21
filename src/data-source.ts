@@ -1,15 +1,19 @@
-import { DataSource } from "typeorm";
+import { DataSource, DataSourceOptions } from 'typeorm';
 
-export const AppDataSource = new DataSource({
-    type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: process.env.POSTGRES_USERNAME,
-    password: process.env.POSTGRES_PASSWORD,
-    database: "postgres",
-    synchronize: false,
-    logging: true,
-    entities: [],
-    subscribers: [],
-    migrations: [],
-})
+export const dataSourceOptions: DataSourceOptions = {
+  type: 'postgres',
+  host: process.env.TYPEORM_HOST,
+  port: 5432,
+  username: process.env.TYPEORM_USERNAME,
+  password: process.env.TYPEORM_PASSWORD,
+  database: 'postgres',
+  synchronize: false,
+  logging: true,
+  entities: [__dirname + process.env.TYPEORM_ENTITIES],
+  subscribers: [],
+  migrations: [__dirname + process.env.TYPEORM_MIGRATIONS],
+  migrationsRun: process.env.TYPEORM_RUN_MIGRATIONS === 'true' ? true : false,
+};
+
+const dataSource = new DataSource(dataSourceOptions);
+export default dataSource;
