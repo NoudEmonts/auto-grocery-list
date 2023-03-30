@@ -1,4 +1,9 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { config } from 'dotenv';
+import { Ingredient } from './entities/ingredients.entity';
+import { Recipe } from './entities/recipe.entity';
+
+config({ path: '.env' });
 
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
@@ -9,11 +14,13 @@ export const dataSourceOptions: DataSourceOptions = {
   database: 'postgres',
   synchronize: false,
   logging: true,
-  entities: [__dirname + process.env.TYPEORM_ENTITIES],
+  entities: [Ingredient, Recipe],
   subscribers: [],
   migrations: [__dirname + process.env.TYPEORM_MIGRATIONS],
   migrationsRun: process.env.TYPEORM_RUN_MIGRATIONS === 'true' ? true : false,
 };
+
+console.log(__dirname + process.env.TYPEORM_MIGRATIONS);
 
 const dataSource = new DataSource(dataSourceOptions);
 export default dataSource;

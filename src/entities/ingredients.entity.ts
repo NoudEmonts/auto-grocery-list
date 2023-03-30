@@ -1,4 +1,4 @@
-import { FoodGroup } from 'src/enums/food-category.enum';
+import { FoodCategory } from '../enum/food-category.enum';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Recipe } from './recipe.entity';
 
@@ -10,8 +10,11 @@ export class Ingredient {
   @Column()
   name: string;
 
-  @Column()
-  category: FoodGroup;
+  @Column({
+    type: 'enum',
+    enum: FoodCategory,
+  })
+  category: FoodCategory;
 
   @Column()
   vegetarian: boolean;
