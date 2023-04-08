@@ -14,13 +14,11 @@ export const dataSourceOptions: DataSourceOptions = {
   database: 'postgres',
   synchronize: false,
   logging: true,
-  entities: [Ingredient, Recipe],
+  entities: [__dirname + process.env.TYPEORM_ENTITIES],
   subscribers: [],
   migrations: [__dirname + process.env.TYPEORM_MIGRATIONS],
   migrationsRun: process.env.TYPEORM_RUN_MIGRATIONS === 'true' ? true : false,
 };
-
-console.log(__dirname + process.env.TYPEORM_MIGRATIONS);
 
 const dataSource = new DataSource(dataSourceOptions);
 export default dataSource;
