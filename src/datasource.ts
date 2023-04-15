@@ -1,6 +1,6 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { config } from 'dotenv';
-import { Ingredient } from './entities/ingredients.entity';
+import { Ingredient } from './entities/ingredient.entity';
 import { Recipe } from './entities/recipe.entity';
 
 config({ path: '.env' });
